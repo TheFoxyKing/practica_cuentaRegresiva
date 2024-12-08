@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-VE">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,84 +7,42 @@
     </head>
     <body onload="comenzarCuentaRegresiva()">
 
-        <h2>Tienes poco tiempo para responder la trivia: <span
+        <h2>
+            Tienes poco tiempo para responder la trivia: 
+            <span
                 id="contador"></span></h2>
+        <!--Titulo Principal-->
         <p>Cual es el nombre de la capital de Venezuela</p>
-        <input type="text" id="uno">
+        <input type="text" name="R1" id="R1">
+
         <p>Cual es el lenguaje de programacion de la web</p>
-        <input type="text" id="dos">
+        <input type="text" name='R2' id="R2">
+
         <p>Con que lenguaje se comunican las computadoras</p>
-        <input type="text" id="tres">
+        <input type="text"  name='R3' id="R3">
+
         <p>Que es XRPL</p>
-        <input type="text" id="cuatro">
+        <input type="text" name='R4' id="R4">
+
         <p>Quien es el creador de Bitcoin</p>
-        <input type="text" id="cinco">
+        <input type="text" name='R5' id="R5">
 
-        <div>
+        <!--Preguntas-->
 
-            <button id="finalTest"
-                onclick="verificarRespuesta()">Finalizar</button>
+        <div class="buttons">
+            <div>
+                <button id="finalTest" onclick="mostrarRespuestas(document.getElementById('R1').value, document.getElementById('R2').value, document.getElementById('R3').value, document.getElementById('R4').value, document.getElementById('R5').value)">
+                    Finalizar
+                </button>
+                </div>
+
+            <div>
+                <button id="resetGame" onclick="location.reload()">
+                    Reiniciar
+                </button>
+            </div>
         </div>
-
-        <div>
-            <button id="resetGame" onclick="reiniciar()">Reiniciar</button>
-        </div>
-
-        <audio id="audioFinal">
-            <source src="./sonidos/gameover.mp3" type="audio/mpeg">
-            sonido no disponible
-        </audio>
-
-        <script>
-       let tiempoFinalizado;
-       let intervaloDeTiempo;
-
-       function comenzarCuentaRegresiva() {
-        tiempoFinalizado = setTimeout(tiempoCumplido, 30000);
-        intervaloDeTiempo = setInterval(tictoc, 1000);
-        document.getElementById('contador').textContent = 30;
-       }
-
-       function tictoc() {
-        let tiempo =  document.getElementById('contador').textContent;
-
-        document.getElementById('contador').textContent = tiempo - 1
-
-       }
-
-       function tiempoCumplido() {
-        clearInterval(intervaloDeTiempo);
-        document.getElementById('contador').textContent = 0;
-        document.getElementById('audioFinal').play();
-        alert("Game Over! se acabo el tiempo intetalo de nuevo");
-
-       }
-
-       function verificarRespuesta(){
-         clearTimeout(tiempoFinalizado);
-         clearInterval(intervaloDeTiempo);
-
-         let fecha = new Date();
-         let respuesta_1 = document.getElementById('uno').value;
-         let respuesta_2 = document.getElementById('dos').value;
-         let respuesta_3 = document.getElementById('tres').value;
-         let respuesta_4 = document.getElementById('cuatro').value;
-         let respuesta_5 = document.getElementById('cinco').value;
-
-         let mensaje = fecha.toLocaleDateString("es-VE") + "\n " + 
-         "1." + respuesta_1 + "\n" + 
-         "2." + respuesta_2 + "\n" +
-         "3." + respuesta_3 + "\n" + 
-         "4." + respuesta_4 + "\n" +
-         "5." + respuesta_5 + "\n"
-         alert(mensaje)
-         
-       }
-
-       function reiniciar(){
-            location.reload()
-       }
-
-    </script>
+        <!--Botones-->
+        <script src="script/app.js"></script>
     </body>
 </html>
